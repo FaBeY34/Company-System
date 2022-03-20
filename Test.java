@@ -15,10 +15,10 @@ public class Test {
     private static ArrayList<Project> projects = new ArrayList<>();
     private static ArrayList<Product> products = new ArrayList<>();
     public static void main(String[] args) throws Exception {
-        var file = new File("CSE1242_spring2022_homework_1_input.txt");
-        var scanner = new Scanner(file);
+        File file = new File("CSE1242_spring2022_homework_1_input.txt");
+        Scanner scanner = new Scanner(file);
         while (scanner.hasNextLine()) {
-            var line = scanner.nextLine().split(" ");
+            String[] line = scanner.nextLine().split(" ");
             switch (line[0]) {
                 case "Department": {
                     departments.add(new Department(Integer.parseInt(line[1]), line[2]));
@@ -38,11 +38,11 @@ public class Test {
                     break;
                 }
                 case "Employee": {
-                    var personId = Integer.parseInt(line[1]);
-                    var departmentName = line[4];
+                    int personId = Integer.parseInt(line[1]);
+                    String departmentName = line[4];
                     Person person = null;
                     Department department = null;
-                    for (var p : persons) {
+                    for (Person p : persons) {
                         if (p.getId() == personId) {
                             person = p;
                             break;
@@ -51,7 +51,7 @@ public class Test {
                     if (person == null) {
                         throw new Exception("No employee with id = " + personId);
                     }
-                    for (var d : departments) {
+                    for (Department d : departments) {
                         if (d.getDepartmentName().equals(departmentName)) {
                             department = d;
                             break;
@@ -65,7 +65,7 @@ public class Test {
                     break;
                 }
                 case "Manager": {
-                    for (var person : persons) {
+                    for (Person person : persons) {
                         if (person instanceof Employee employee && employee.getId() == Integer.parseInt(line[1])) {
                             persons.set(persons.indexOf(employee), new Manager(employee, Double.parseDouble(line[2])));
                             break;
@@ -74,7 +74,7 @@ public class Test {
                     break;
                 }
                 case "RegularEmployee": {
-                    for (var person : persons) {
+                    for (Person person : persons) {
                         if (person instanceof Employee employee && employee.getId() == Integer.parseInt(line[1])) {
                             persons.set(persons.indexOf(employee),
                                     new RegularEmployee(employee, Double.parseDouble(line[2])));
@@ -85,8 +85,8 @@ public class Test {
                 }
                 case "Developer": {
                     RegularEmployee regularEmployee = null;
-                    var regularEmployeeId = Integer.parseInt(line[1]);
-                    for (var person : persons) {
+                    int regularEmployeeId = Integer.parseInt(line[1]);
+                    for (Person person : persons) {
                         if (person instanceof RegularEmployee && person.getId() == regularEmployeeId) {
                             regularEmployee = (RegularEmployee) person;
                             break;
@@ -95,9 +95,9 @@ public class Test {
                     if (regularEmployee == null) {
                         throw new Exception("No regular developer with id = " + line[1]);
                     }
-                    var listOfProjects = new ArrayList<Project>();
+                    ArrayList<Project> listOfProjects = new ArrayList<>();
                     for (int i = 2; i < line.length; i++) {
-                        for (var project : projects) {
+                        for (Project project : projects) {
                             if (line[i].equals(project.getProjectName())) {
                                 listOfProjects.add(project);
                                 break;
@@ -109,8 +109,8 @@ public class Test {
                 }
                 case "SalesEmployee": {
                     RegularEmployee regularEmployee = null;
-                    var regularEmployeeId = Integer.parseInt(line[1]);
-                    for (var person : persons) {
+                    int regularEmployeeId = Integer.parseInt(line[1]);
+                    for (Person person : persons) {
                         if (person instanceof RegularEmployee && person.getId() == regularEmployeeId) {
                             regularEmployee = (RegularEmployee) person;
                             break;
@@ -119,9 +119,9 @@ public class Test {
                     if (regularEmployee == null) {
                         throw new Exception("No sales employee with id = " + line[1]);
                     }
-                    var listOfProducts = new ArrayList<Product>();
+                    ArrayList<Product> listOfProducts = new ArrayList<>();
                     for (int i = 2; i < line.length; i++) {
-                        for (var product : products) {
+                        for (Product product : products) {
                             if (line[i].equals(product.getProductName())) {
                                 listOfProducts.add(product);
                                 break;
@@ -133,8 +133,8 @@ public class Test {
                 }
                 case "Customer": {
                     Person person = null;
-                    var personId = Integer.parseInt(line[1]);
-                    for (var p : persons) {
+                    int personId = Integer.parseInt(line[1]);
+                    for (Person p : persons) {
                         if (p.getId() == personId) {
                             person = p;
                             break;
@@ -143,9 +143,9 @@ public class Test {
                     if (person == null) {
                         throw new Exception("No customer with id = " + line[1]);
                     }
-                    var listOfProducts = new ArrayList<Product>();
+                    ArrayList<Product> listOfProducts = new ArrayList<>();
                     for (int i = 2; i < line.length; i++) {
-                        for (var product : products) {
+                        for (Product product : products) {
                             if (line[i].equals(product.getProductName())) {
                                 listOfProducts.add(product);
                                 break;
@@ -162,7 +162,7 @@ public class Test {
         scanner.close();
 
         for (Department department : departments) {
-            var manager = getManagerOfDepartment(department);
+            Manager manager = getManagerOfDepartment(department);
             for (Person person : persons) {
                 if (person instanceof RegularEmployee regularEmployee
                         && regularEmployee.getDepartment().equals(department)) {
@@ -207,7 +207,7 @@ public class Test {
                 if (person instanceof Manager manager) {
                     if (manager.getDepartment().equals(department)) {
                         System.out.println("\t" + manager.toString());
-                        var regularEmployees = manager.getRegularEmployees();
+                        ArrayList<RegularEmployee> regularEmployees = manager.getRegularEmployees();
                         for (int i = 0; i < regularEmployees.size(); i++) {
                             System.out.println("\t\t\t" + (i + 1) + ". " + regularEmployees.get(i));
                         }
@@ -240,11 +240,11 @@ public class Test {
     }
 
     private static Calendar parseCalender(String date) {
-        var splittedDate = date.split("/");
-        var DAY = Integer.parseInt(splittedDate[0]);
-        var MONTH = Integer.parseInt(splittedDate[1]) - 1;
-        var YEAR = Integer.parseInt(splittedDate[2]);
-        var calendar = Calendar.getInstance();
+        String[] splittedDate = date.split("/");
+        int DAY = Integer.parseInt(splittedDate[0]);
+        int MONTH = Integer.parseInt(splittedDate[1]) - 1;
+        int YEAR = Integer.parseInt(splittedDate[2]);
+        Calendar calendar = Calendar.getInstance();
         calendar.set(YEAR, MONTH, DAY);
         return calendar;
     }

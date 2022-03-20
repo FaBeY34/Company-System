@@ -45,12 +45,12 @@ public class Manager extends Employee {
     }
 
     public void distributeBonusBudget() {
-        var total = 0d;
-        for (var regEmp : regularEmployees) {
+        double total = 0;
+        for (RegularEmployee regEmp : regularEmployees) {
             total += regEmp.getSalary() * regEmp.getPerformanceScore();
         }
-        var unit = bonusBudget / total;
-        for (var regEmp : regularEmployees) {
+        double unit = bonusBudget / total;
+        for (RegularEmployee regEmp : regularEmployees) {
             regEmp.setBonus(unit * regEmp.getSalary() * regEmp.getPerformanceScore());
         }
     }

@@ -45,8 +45,8 @@ public class Developer extends RegularEmployee {
 
     @Override
     public String toString() {
-        var projectDetails = "";
-        for (var project : projects) {
+        String projectDetails = "";
+        for (Project project : projects) {
             projectDetails += "Project [projectName=" + project.getProjectName() + ", startDate="
                     + project.getStartDate().get(Calendar.DAY_OF_MONTH) + "/"
                     + (project.getStartDate().get(Calendar.MONTH) + 1)

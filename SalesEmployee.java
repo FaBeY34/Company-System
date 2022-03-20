@@ -53,7 +53,7 @@ public class SalesEmployee extends RegularEmployee {
     }
 
     public void calculateTotalValuesFromSales(ArrayList<Product> sales) {
-        var total = 0d;
+        double total = 0;
         for (Product sale : sales) {
             total += sale.getPrice();
         }
@@ -62,8 +62,8 @@ public class SalesEmployee extends RegularEmployee {
 
     @Override
     public String toString() {
-        var productDetails = "";
-        for (var product : getSales()) {
+        String productDetails = "";
+        for (Product product : getSales()) {
             productDetails += "Product [productName=" + product.getProductName() + ", transactionDate="
                     + product.getSaleDate().get(Calendar.DAY_OF_MONTH) + "/"
                     + (product.getSaleDate().get(Calendar.MONTH) + 1)
