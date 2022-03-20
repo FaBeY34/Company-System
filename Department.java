@@ -3,8 +3,8 @@ public class Department {
     private String departmentName;
 
     public Department(int departmentId, String departmentName) {
-        setDepartmentId(departmentId);
-        setDepartmentName(departmentName);
+        this.departmentId = departmentId;
+        this.departmentName = departmentName;
     }
 
     public int getDepartmentId() {

@@ -7,7 +7,7 @@ public class Developer extends RegularEmployee {
 
     public Developer(int id, String firstName, String lastName, String gender, Calendar birthDate, String maritalStatus,
             String hasDriverLicence, double salary, Calendar hireDate, Department department, double pScore,
-            ArrayList<Project> p) {
+            ArrayList<Project> p) throws Exception {
         super(id, firstName, lastName, gender, birthDate, maritalStatus, hasDriverLicence, salary, hireDate, department,
                 pScore);
 
@@ -15,7 +15,7 @@ public class Developer extends RegularEmployee {
         numberOfDevelopers++;
     }
 
-    public Developer(RegularEmployee re, ArrayList<Project> p) {
+    public Developer(RegularEmployee re, ArrayList<Project> p) throws Exception {
         this(re.getId(), re.getFirstName(), re.getLastName(), re.getGender(), re.getBirthDate(), re.getMaritalStatus(),
                 re.getHasDriverLicence(), re.getSalary(), re.getHireDate(), re.getDepartment(),
                 re.getPerformanceScore(), p);
@@ -29,18 +29,18 @@ public class Developer extends RegularEmployee {
         this.projects = projects;
     }
 
-    public boolean addProject(Project s) {
+    public boolean addProject(Project s) throws Exception {
         if (!projects.contains(s)) {
             return projects.add(s);
         }
-        return false;
+        throw new Exception("This product exists");
     }
 
-    public boolean removeProject(Project s) {
+    public boolean removeProject(Project s) throws Exception {
         if (projects.contains(s)) {
             return projects.remove(s);
         }
-        return false;
+        throw new Exception("This product does not exist");
     }
 
     @Override

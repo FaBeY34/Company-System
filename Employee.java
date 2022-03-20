@@ -7,16 +7,16 @@ public class Employee extends Person {
     public static int numberOfEmployees;
 
     public Employee(int id, String firstName, String lastName, String gender, Calendar birthDate, String maritalStatus,
-            String hasDriverLicence, double salary, Calendar hireDate, Department department) {
+            String hasDriverLicence, double salary, Calendar hireDate, Department department) throws Exception {
         super(id, firstName, lastName, gender, birthDate, maritalStatus, hasDriverLicence);
 
-        setSalary(salary);
-        setHireDate(hireDate);
-        setDepartment(department);
+        this.salary = salary;
+        this.hireDate = hireDate;
+        this.department = department;
         numberOfEmployees++;
     }
 
-    public Employee(Person person, double salary, Calendar hireDate, Department department) {
+    public Employee(Person person, double salary, Calendar hireDate, Department department) throws Exception {
         this(person.getId(), person.getFirstName(), person.getLastName(), person.getGender(), person.getBirthDate(),
                 person.getMaritalStatus(), person.getHasDriverLicence(), salary, hireDate, department);
     }

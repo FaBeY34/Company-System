@@ -6,15 +6,16 @@ public class Manager extends Employee {
     private double bonusBudget;
 
     public Manager(int id, String firstName, String lastName, String gender, Calendar birthDate, String maritalStatus,
-            String hasDriverLicence, double salary, Calendar hireDate, Department department, double bonusBudget) {
+            String hasDriverLicence, double salary, Calendar hireDate, Department department, double bonusBudget)
+            throws Exception {
         super(id, firstName, lastName, gender, birthDate, maritalStatus, hasDriverLicence, salary, hireDate,
                 department);
 
-        setBonusBudget(bonusBudget);
+        this.bonusBudget = bonusBudget;
         regularEmployees = new ArrayList<>();
     }
 
-    public Manager(Employee employee, double bonusBudget) {
+    public Manager(Employee employee, double bonusBudget) throws Exception {
         this(employee.getId(), employee.getFirstName(), employee.getLastName(), employee.getGender(),
                 employee.getBirthDate(), employee.getMaritalStatus(), employee.getHasDriverLicence(),
                 employee.getSalary(), employee.getHireDate(), employee.getDepartment(), bonusBudget);

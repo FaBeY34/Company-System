@@ -8,7 +8,7 @@ public class SalesEmployee extends RegularEmployee {
 
     public SalesEmployee(int id, String firstName, String lastName, String gender, Calendar birthDate,
             String maritalStatus, String hasDriverLicence, double salary, Calendar hireDate, Department department,
-            double pScore, ArrayList<Product> s) {
+            double pScore, ArrayList<Product> s) throws Exception {
         super(id, firstName, lastName, gender, birthDate, maritalStatus, hasDriverLicence, salary, hireDate, department,
                 pScore);
         sales = s;
@@ -16,7 +16,7 @@ public class SalesEmployee extends RegularEmployee {
         calculateTotalValuesFromSales(sales);
     }
 
-    public SalesEmployee(RegularEmployee re, ArrayList<Product> s) {
+    public SalesEmployee(RegularEmployee re, ArrayList<Product> s) throws Exception {
         this(re.getId(), re.getFirstName(), re.getLastName(), re.getGender(), re.getBirthDate(), re.getMaritalStatus(),
                 re.getHasDriverLicence(), re.getSalary(), re.getHireDate(), re.getDepartment(),
                 re.getPerformanceScore(), s);
@@ -38,18 +38,18 @@ public class SalesEmployee extends RegularEmployee {
         this.sales = sales;
     }
 
-    public boolean addSale(Product s) {
+    public boolean addSale(Product s) throws Exception {
         if (!sales.contains(s)) {
             return sales.add(s);
         }
-        return false;
+        throw new Exception("This product exists");
     }
 
-    public boolean removeSale(Product s) {
+    public boolean removeSale(Product s) throws Exception {
         if (sales.contains(s)) {
             return sales.remove(s);
         }
-        return false;
+        throw new Exception("This product does not exist");
     }
 
     public void calculateTotalValuesFromSales(ArrayList<Product> sales) {

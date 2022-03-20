@@ -5,13 +5,13 @@ public class Customer extends Person {
     private ArrayList<Product> products;
 
     public Customer(int id, String firstName, String lastName, String gender, Calendar birthDate, String maritalStatus,
-            String hasDriverLicence, ArrayList<Product> products) {
+            String hasDriverLicence, ArrayList<Product> products) throws Exception {
         super(id, firstName, lastName, gender, birthDate, maritalStatus, hasDriverLicence);
 
-        setProducts(products);
+        this.products = products;
     }
 
-    public Customer(Person person, ArrayList<Product> products) {
+    public Customer(Person person, ArrayList<Product> products) throws Exception {
         this(person.getId(), person.getFirstName(), person.getLastName(), person.getGender(), person.getBirthDate(),
                 person.getMaritalStatus(), person.getHasDriverLicence(), products);
     }

@@ -6,14 +6,14 @@ public class RegularEmployee extends Employee {
 
     public RegularEmployee(int id, String firstName, String lastName, String gender, Calendar birthDate,
             String maritalStatus, String hasDriverLicence, double salary, Calendar hireDate, Department department,
-            double performanceScore) {
+            double performanceScore) throws Exception {
         super(id, firstName, lastName, gender, birthDate, maritalStatus, hasDriverLicence, salary, hireDate,
                 department);
 
-        setPerformanceScore(performanceScore);
+        this.performanceScore = performanceScore;
     }
 
-    public RegularEmployee(Employee employee, double perfScore) {
+    public RegularEmployee(Employee employee, double perfScore) throws Exception {
         this(employee.getId(), employee.getFirstName(), employee.getLastName(), employee.getGender(),
                 employee.getBirthDate(), employee.getMaritalStatus(), employee.getHasDriverLicence(),
                 employee.getSalary(), employee.getHireDate(), employee.getDepartment(), perfScore);

@@ -6,9 +6,9 @@ public class Product {
     private double price;
 
     public Product(String productName, Calendar saleDate, double price) {
-        setProductName(productName);
-        setSaleDate(saleDate);
-        setPrice(price);
+        this.productName = productName;
+        this.saleDate = saleDate;
+        this.price = price;
     }
 
     public String getProductName() {

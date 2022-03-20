@@ -5,9 +5,9 @@ public class Project {
     private Calendar startDate;
     private boolean state;
 
-    public Project(String projectName, Calendar startDate, String state) {
-        setProjectName(projectName);
-        setStartDate(startDate);
+    public Project(String projectName, Calendar startDate, String state) throws Exception {
+        this.projectName = projectName;
+        this.startDate = startDate;
         setState(state);
     }
 
@@ -27,14 +27,16 @@ public class Project {
         this.projectName = projectName;
     }
 
-    public void setState(String state) {
+    public void setState(String state) throws Exception {
         switch (state) {
             case "Open":
                 this.state = true;
-                break;
+                return;
             case "Close":
                 this.state = false;
-                break;
+                return;
+            default:
+                throw new Exception("Please enter 'Open' or 'Close'");
         }
     }
 

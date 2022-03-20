@@ -10,11 +10,11 @@ public class Person {
     private boolean hasDriverLicence;
 
     public Person(int id, String firstName, String lastName, String gender, Calendar birthDate, String maritalStatus,
-            String hasDriverLicence) {
-        setId(id);
-        setFirstName(firstName);
-        setLastName(lastName);
-        setBirthDate(birthDate);
+            String hasDriverLicence) throws Exception {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
         setMaritalStatus(maritalStatus);
         setGender(gender);
         setHasDriverLicence(hasDriverLicence);
@@ -51,12 +51,11 @@ public class Person {
             case 2:
                 return "Man";
             default:
-                // TODO: Throw ex
                 return null;
         }
     }
 
-    public void setGender(String gender) {
+    public void setGender(String gender) throws Exception {
         switch (gender) {
             case "Woman":
                 this.gender = 1;
@@ -65,8 +64,7 @@ public class Person {
                 this.gender = 2;
                 return;
             default:
-                // TODO: Throw ex
-                return;
+                throw new Exception("Please enter 'Woman' or 'Man'");
         }
     }
 
@@ -90,15 +88,14 @@ public class Person {
         }
     }
 
-    public void setMaritalStatus(String maritalStatus) {
+    public void setMaritalStatus(String maritalStatus) throws Exception {
         switch (maritalStatus) {
             case "Single":
                 this.maritalStatus = 1;
             case "Married":
                 this.maritalStatus = 2;
             default:
-                // TODO: Throw ex
-                return;
+            throw new Exception("Please enter 'Single' or 'Married'");
         }
     }
 
@@ -106,7 +103,7 @@ public class Person {
         return hasDriverLicence ? "Yes" : "No";
     }
 
-    public void setHasDriverLicence(String hasDriverLicence) {
+    public void setHasDriverLicence(String hasDriverLicence) throws Exception {
         switch (hasDriverLicence) {
             case "Yes":
                 this.hasDriverLicence = true;
@@ -115,8 +112,7 @@ public class Person {
                 this.hasDriverLicence = false;
                 break;
             default:
-                // TODO: Throw ex
-                return;
+            throw new Exception("Please enter 'Yes' or 'No'");
         }
     }
 
