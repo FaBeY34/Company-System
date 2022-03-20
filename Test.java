@@ -14,33 +14,34 @@ public class Test {
     private static ArrayList<Department> departments = new ArrayList<>();
     private static ArrayList<Project> projects = new ArrayList<>();
     private static ArrayList<Product> products = new ArrayList<>();
-
     public static void main(String[] args) throws Exception {
         var file = new File("CSE1242_spring2022_homework_1_input.txt");
         var scanner = new Scanner(file);
         while (scanner.hasNextLine()) {
             var line = scanner.nextLine().split(" ");
             switch (line[0]) {
-                case "Department":
+                case "Department": {
                     departments.add(new Department(Integer.parseInt(line[1]), line[2]));
                     break;
-                case "Project":
+                }
+                case "Project": {
                     projects.add(new Project(line[1], parseCalender(line[2]), line[3]));
                     break;
-                case "Product":
+                }
+                case "Product": {
                     products.add(new Product(line[1], parseCalender(line[2]), Double.parseDouble(line[3])));
                     break;
-                case "Person":
+                }
+                case "Person": {
                     persons.add(new Person(Integer.parseInt(line[3]), line[1], line[2], line[4], parseCalender(line[5]),
                             line[6], line[7]));
                     break;
+                }
                 case "Employee": {
                     var personId = Integer.parseInt(line[1]);
                     var departmentName = line[4];
-
                     Person person = null;
                     Department department = null;
-
                     for (var p : persons) {
                         if (p.getId() == personId) {
                             person = p;
@@ -48,9 +49,8 @@ public class Test {
                         }
                     }
                     if (person == null) {
-                        throw new Exception("No person with id = " + personId);
+                        throw new Exception("No employee with id = " + personId);
                     }
-
                     for (var d : departments) {
                         if (d.getDepartmentName().equals(departmentName)) {
                             department = d;
@@ -60,7 +60,6 @@ public class Test {
                     if (department == null) {
                         throw new Exception("No department with name = " + departmentName);
                     }
-
                     persons.set(persons.indexOf(person),
                             new Employee(person, Double.parseDouble(line[2]), parseCalender(line[3]), department));
                     break;
@@ -94,7 +93,7 @@ public class Test {
                         }
                     }
                     if (regularEmployee == null) {
-                        throw new Exception("No regular employee with id = " + line[1]);
+                        throw new Exception("No regular developer with id = " + line[1]);
                     }
                     var listOfProjects = new ArrayList<Project>();
                     for (int i = 2; i < line.length; i++) {
@@ -118,7 +117,7 @@ public class Test {
                         }
                     }
                     if (regularEmployee == null) {
-                        throw new Exception("No regular employee with id = " + line[1]);
+                        throw new Exception("No sales employee with id = " + line[1]);
                     }
                     var listOfProducts = new ArrayList<Product>();
                     for (int i = 2; i < line.length; i++) {
@@ -142,7 +141,7 @@ public class Test {
                         }
                     }
                     if (person == null) {
-                        throw new Exception("No person with id = " + line[1]);
+                        throw new Exception("No customer with id = " + line[1]);
                     }
                     var listOfProducts = new ArrayList<Product>();
                     for (int i = 2; i < line.length; i++) {
@@ -171,7 +170,7 @@ public class Test {
                 }
             }
         }
-
+        //instructions
         for (Person person : persons) {
             if (person instanceof Manager manager) {
                 manager.distributeBonusBudget();
@@ -190,11 +189,11 @@ public class Test {
         }
 
         SalesEmployee manOfMonth = null;
+
         for (Person person : persons) {
             if (person instanceof SalesEmployee salesEmployee) {
                 salesEmployee.raiseSalary(0.18);
-                if (manOfMonth == null
-                        || salesEmployee.getTotalValuesFromSales() > manOfMonth.getTotalValuesFromSales()) {
+                if (manOfMonth == null || salesEmployee.getTotalValuesFromSales() > manOfMonth.getTotalValuesFromSales()) {
                     manOfMonth = salesEmployee;
                 }
             }
@@ -229,11 +228,6 @@ public class Test {
                 System.out.println(person.toString());
             }
         }
-        // System.out.println(person3.toString());
-        // System.out.println(person7.toString());
-        // System.out.println(person10.toString());
-        // System.out.println();
-        // System.out.println(department1.getAllEmployees().size());
     }
 
     private static Manager getManagerOfDepartment(Department department) {
