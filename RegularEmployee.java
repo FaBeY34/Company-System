@@ -43,6 +43,6 @@ public class RegularEmployee extends Employee {
                 + ", hireDate=" + getHireDate().get(Calendar.DAY_OF_MONTH) + "/"
                 + (getHireDate().get(Calendar.MONTH) + 1)
                 + "/" + getHireDate().get(Calendar.YEAR) + "]\n\t\t\t\tRegularEmployee Info [performanceScore="
-                + getPerformanceScore() + ", bonus=" + getBonus() + "]\n\t\t\t";
+                + getPerformanceScore() + ", bonus=" + getBonus() + "]\t\t\t";
     }
 }

@@ -179,23 +179,17 @@ public class Test {
             if (person instanceof Manager) {
                 ((Manager) person).distributeBonusBudget();
                 ((Manager) person).raiseSalary(0.2);
-                System.out.println(((Manager) person).getSalary() + " " + ((Manager) person).getFirstName() + " "
-                        + ((Manager) person).getClass());
             }
         }
         for (Person person : people) {
             if (person instanceof RegularEmployee
                     && !(person instanceof SalesEmployee || person instanceof Developer)) {
                 ((RegularEmployee) person).raiseSalary(0.3);
-                System.out.println(((RegularEmployee) person).getSalary() + " "
-                        + ((RegularEmployee) person).getFirstName() + " " + ((RegularEmployee) person).getClass());
             }
         }
         for (Person person : people) {
             if (person instanceof Developer) {
                 ((Developer) person).raiseSalary(0.23);
-                System.out.println(((Developer) person).getSalary() + " " + ((Developer) person).getFirstName() + " "
-                        + ((Developer) person).getClass());
             }
         }
 
@@ -204,13 +198,11 @@ public class Test {
         for (Person person : people) {
             if (person instanceof SalesEmployee) {
                 ((SalesEmployee) person).raiseSalary(0.18);
-                if (manOfMonth == null
-                        || ((SalesEmployee) person).getTotalValuesFromSales() > manOfMonth.getTotalValuesFromSales()) {
+                if (manOfMonth == null || ((SalesEmployee) person).getTotalValuesFromSales() > manOfMonth.getTotalValuesFromSales()) {
                     manOfMonth = ((SalesEmployee) person);
                 }
             }
         }
-        System.out.println(manOfMonth.getFirstName() + " " + manOfMonth.getClass());
         manOfMonth.raiseSalary(1000);
 
         for (Department department : departments) {
@@ -228,7 +220,7 @@ public class Test {
                 }
             }
         }
-        System.out.println("\n\n**********************CUSTOMERS************************");
+        System.out.println("\n\n\n**********************CUSTOMERS************************");
         for (Person person : people) {
             if (person instanceof Customer) {
                 System.out.println(((Customer) person).toString());

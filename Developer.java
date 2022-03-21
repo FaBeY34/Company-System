@@ -57,6 +57,6 @@ public class Developer extends RegularEmployee {
                 + ", hireDate=" + getHireDate().get(Calendar.DAY_OF_MONTH) + "/"
                 + (getHireDate().get(Calendar.MONTH) + 1)
                 + "/" + getHireDate().get(Calendar.YEAR) + "]\n\t\t\t\tRegularEmployee Info [performanceScore="
-                + getPerformanceScore() + ", bonus=" + getBonus() + "]\n\t\t\t\t[" + projectDetails + "]\n\t\t\t";
+                + getPerformanceScore() + ", bonus=" + getBonus() + "]\n\t\t\t\t[" + projectDetails + "]\t\t\t";
     }
 }
