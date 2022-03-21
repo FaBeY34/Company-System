@@ -10,7 +10,7 @@ import java.util.Calendar;
 import java.util.Scanner;
 
 public class Test {
-    private static ArrayList<Person> persons = new ArrayList<>();
+    private static ArrayList<Person> people = new ArrayList<>();
     private static ArrayList<Department> departments = new ArrayList<>();
     private static ArrayList<Project> projects = new ArrayList<>();
     private static ArrayList<Product> products = new ArrayList<>();
@@ -34,7 +34,7 @@ public class Test {
                     break;
                 }
                 case "Person": {
-                    persons.add(new Person(Integer.parseInt(line[3]), line[1], line[2], line[4], parseCalender(line[5]),
+                    people.add(new Person(Integer.parseInt(line[3]), line[1], line[2], line[4], parseCalender(line[5]),
                             line[6], line[7]));
                     break;
                 }
@@ -43,7 +43,7 @@ public class Test {
                     String departmentName = line[4];
                     Person person = null;
                     Department department = null;
-                    for (Person p : persons) {
+                    for (Person p : people) {
                         if (p.getId() == personId) {
                             person = p;
                             break;
@@ -61,25 +61,49 @@ public class Test {
                     if (department == null) {
                         throw new Exception("No department with name = " + departmentName);
                     }
-                    persons.set(persons.indexOf(person),
+                    people.set(people.indexOf(person),
                             new Employee(person, Double.parseDouble(line[2]), parseCalender(line[3]), department));
                     break;
                 }
-                case "Manager": {
-                    for (Person person : persons) {
+                case "Customer": {
+                    Person person = null;
+                    int personId = Integer.parseInt(line[1]);
+                    for (Person p : people) {
+                        if (p.getId() == personId) {
+                            person = p;
+                            break;
+                        }
+                    }
+                    if (person == null) {
+                        throw new Exception("No customer with id = " + line[1]);
+                    }
+                    ArrayList<Product> listOfProducts = new ArrayList<>();
+                    for (int i = 2; i < line.length; i++) {
+                        for (Product product : products) {
+                            if (line[i].equals(product.getProductName())) {
+                                listOfProducts.add(product);
+                                break;
+                            }
+                        }
+                    }
+                    people.set(people.indexOf(person), new Customer(person, listOfProducts));
+                    break;
+                }
+                case "RegularEmployee": {
+                    for (Person person : people) {
                         if (person instanceof Employee && ((Employee) person).getId() == Integer.parseInt(line[1])) {
-                            persons.set(persons.indexOf((Employee) person),
-                                    new Manager(((Employee) person), Double.parseDouble(line[2])));
+                            people.set(people.indexOf(((Employee) person)),
+                                    new RegularEmployee(((Employee) person), Double.parseDouble(line[2])));
                             break;
                         }
                     }
                     break;
                 }
-                case "RegularEmployee": {
-                    for (Person person : persons) {
+                case "Manager": {
+                    for (Person person : people) {
                         if (person instanceof Employee && ((Employee) person).getId() == Integer.parseInt(line[1])) {
-                            persons.set(persons.indexOf(((Employee) person)),
-                                    new RegularEmployee(((Employee) person), Double.parseDouble(line[2])));
+                            people.set(people.indexOf((Employee) person),
+                                    new Manager(((Employee) person), Double.parseDouble(line[2])));
                             break;
                         }
                     }
@@ -88,7 +112,7 @@ public class Test {
                 case "Developer": {
                     RegularEmployee regularEmployee = null;
                     int regularEmployeeId = Integer.parseInt(line[1]);
-                    for (Person person : persons) {
+                    for (Person person : people) {
                         if (person instanceof RegularEmployee
                                 && ((RegularEmployee) person).getId() == regularEmployeeId) {
                             regularEmployee = (RegularEmployee) person;
@@ -107,13 +131,13 @@ public class Test {
                             }
                         }
                     }
-                    persons.set(persons.indexOf(regularEmployee), new Developer(regularEmployee, listOfProjects));
+                    people.set(people.indexOf(regularEmployee), new Developer(regularEmployee, listOfProjects));
                     break;
                 }
                 case "SalesEmployee": {
                     RegularEmployee regularEmployee = null;
                     int regularEmployeeId = Integer.parseInt(line[1]);
-                    for (Person person : persons) {
+                    for (Person person : people) {
                         if (person instanceof RegularEmployee
                                 && ((RegularEmployee) person).getId() == regularEmployeeId) {
                             regularEmployee = (RegularEmployee) person;
@@ -132,31 +156,7 @@ public class Test {
                             }
                         }
                     }
-                    persons.set(persons.indexOf(regularEmployee), new SalesEmployee(regularEmployee, listOfProducts));
-                    break;
-                }
-                case "Customer": {
-                    Person person = null;
-                    int personId = Integer.parseInt(line[1]);
-                    for (Person p : persons) {
-                        if (p.getId() == personId) {
-                            person = p;
-                            break;
-                        }
-                    }
-                    if (person == null) {
-                        throw new Exception("No customer with id = " + line[1]);
-                    }
-                    ArrayList<Product> listOfProducts = new ArrayList<>();
-                    for (int i = 2; i < line.length; i++) {
-                        for (Product product : products) {
-                            if (line[i].equals(product.getProductName())) {
-                                listOfProducts.add(product);
-                                break;
-                            }
-                        }
-                    }
-                    persons.set(persons.indexOf(person), new Customer(person, listOfProducts));
+                    people.set(people.indexOf(regularEmployee), new SalesEmployee(regularEmployee, listOfProducts));
                     break;
                 }
                 default:
@@ -167,7 +167,7 @@ public class Test {
 
         for (Department department : departments) {
             Manager manager = getManagerOfDepartment(department);
-            for (Person person : persons) {
+            for (Person person : people) {
                 if (person instanceof RegularEmployee
                         && ((RegularEmployee) person).getDepartment().equals(department)) {
                     manager.addEmployee(((RegularEmployee) person));
@@ -175,7 +175,7 @@ public class Test {
             }
         }
         // instructions
-        for (Person person : persons) {
+        for (Person person : people) {
             if (person instanceof Manager) {
                 ((Manager) person).distributeBonusBudget();
                 ((Manager) person).raiseSalary(0.2);
@@ -183,14 +183,15 @@ public class Test {
                         + ((Manager) person).getClass());
             }
         }
-        for (Person person : persons) {
-            if (person instanceof RegularEmployee && !(person instanceof SalesEmployee || person instanceof Developer)) {
+        for (Person person : people) {
+            if (person instanceof RegularEmployee
+                    && !(person instanceof SalesEmployee || person instanceof Developer)) {
                 ((RegularEmployee) person).raiseSalary(0.3);
                 System.out.println(((RegularEmployee) person).getSalary() + " "
                         + ((RegularEmployee) person).getFirstName() + " " + ((RegularEmployee) person).getClass());
             }
         }
-        for (Person person : persons) {
+        for (Person person : people) {
             if (person instanceof Developer) {
                 ((Developer) person).raiseSalary(0.23);
                 System.out.println(((Developer) person).getSalary() + " " + ((Developer) person).getFirstName() + " "
@@ -200,7 +201,7 @@ public class Test {
 
         SalesEmployee manOfMonth = null;
 
-        for (Person person : persons) {
+        for (Person person : people) {
             if (person instanceof SalesEmployee) {
                 ((SalesEmployee) person).raiseSalary(0.18);
                 if (manOfMonth == null
@@ -215,7 +216,7 @@ public class Test {
         for (Department department : departments) {
             System.out.println("************************************************");
             System.out.println(department.toString());
-            for (Person person : persons) {
+            for (Person person : people) {
                 if (person instanceof Manager) {
                     if (((Manager) person).getDepartment().equals(department)) {
                         System.out.println("\t" + ((Manager) person).toString());
@@ -228,14 +229,14 @@ public class Test {
             }
         }
         System.out.println("\n\n**********************CUSTOMERS************************");
-        for (Person person : persons) {
+        for (Person person : people) {
             if (person instanceof Customer) {
                 System.out.println(((Customer) person).toString());
             }
         }
 
         System.out.println("\n\n**********************PEOPLE************************");
-        for (Person person : persons) {
+        for (Person person : people) {
             if (!(person instanceof Customer || person instanceof Employee)) {
                 System.out.println(person.toString());
             }
@@ -243,7 +244,7 @@ public class Test {
     }
 
     private static Manager getManagerOfDepartment(Department department) {
-        for (Person person : persons) {
+        for (Person person : people) {
             if (person instanceof Manager && ((Manager) person).getDepartment().equals(department)) {
                 return ((Manager) person);
             }
