@@ -27,7 +27,7 @@ public class SalesEmployee extends RegularEmployee {
     }
 
     public void setTotalValuesFromSales(double totalValuesFromSales) {
-        this.totalValuesFromSales = totalValuesFromSales;
+        this.totalValuesFromSales = (int) (100 * totalValuesFromSales) / 100.0;
     }
 
     public ArrayList<Product> getSales() {

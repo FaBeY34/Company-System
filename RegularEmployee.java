@@ -24,7 +24,7 @@ public class RegularEmployee extends Employee {
     }
 
     public void setPerformanceScore(double performanceScore) {
-        this.performanceScore = performanceScore;
+        this.performanceScore = (int) (100 * performanceScore) / 100.0;
     }
 
     public double getBonus() {
@@ -32,7 +32,7 @@ public class RegularEmployee extends Employee {
     }
 
     public void setBonus(double bonus) {
-        this.bonus = bonus;
+        this.bonus = (int) (100 * bonus) / 100.0;
     }
 
     @Override

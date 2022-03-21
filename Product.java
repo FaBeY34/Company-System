@@ -32,7 +32,7 @@ public class Product {
     }
 
     public void setPrice(double price) {
-        this.price = price;
+        this.price = (int) (100 * price) / 100.0;
     }
 
     @Override

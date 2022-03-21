@@ -14,6 +14,7 @@ public class Test {
     private static ArrayList<Department> departments = new ArrayList<>();
     private static ArrayList<Project> projects = new ArrayList<>();
     private static ArrayList<Product> products = new ArrayList<>();
+
     public static void main(String[] args) throws Exception {
         File file = new File("CSE1242_spring2022_homework_1_input.txt");
         Scanner scanner = new Scanner(file);
@@ -66,8 +67,9 @@ public class Test {
                 }
                 case "Manager": {
                     for (Person person : persons) {
-                        if (person instanceof Employee employee && employee.getId() == Integer.parseInt(line[1])) {
-                            persons.set(persons.indexOf(employee), new Manager(employee, Double.parseDouble(line[2])));
+                        if (person instanceof Employee && ((Employee) person).getId() == Integer.parseInt(line[1])) {
+                            persons.set(persons.indexOf((Employee) person),
+                                    new Manager(((Employee) person), Double.parseDouble(line[2])));
                             break;
                         }
                     }
@@ -75,9 +77,9 @@ public class Test {
                 }
                 case "RegularEmployee": {
                     for (Person person : persons) {
-                        if (person instanceof Employee employee && employee.getId() == Integer.parseInt(line[1])) {
-                            persons.set(persons.indexOf(employee),
-                                    new RegularEmployee(employee, Double.parseDouble(line[2])));
+                        if (person instanceof Employee && ((Employee) person).getId() == Integer.parseInt(line[1])) {
+                            persons.set(persons.indexOf(((Employee) person)),
+                                    new RegularEmployee(((Employee) person), Double.parseDouble(line[2])));
                             break;
                         }
                     }
@@ -87,7 +89,8 @@ public class Test {
                     RegularEmployee regularEmployee = null;
                     int regularEmployeeId = Integer.parseInt(line[1]);
                     for (Person person : persons) {
-                        if (person instanceof RegularEmployee && person.getId() == regularEmployeeId) {
+                        if (person instanceof RegularEmployee
+                                && ((RegularEmployee) person).getId() == regularEmployeeId) {
                             regularEmployee = (RegularEmployee) person;
                             break;
                         }
@@ -111,7 +114,8 @@ public class Test {
                     RegularEmployee regularEmployee = null;
                     int regularEmployeeId = Integer.parseInt(line[1]);
                     for (Person person : persons) {
-                        if (person instanceof RegularEmployee && person.getId() == regularEmployeeId) {
+                        if (person instanceof RegularEmployee
+                                && ((RegularEmployee) person).getId() == regularEmployeeId) {
                             regularEmployee = (RegularEmployee) person;
                             break;
                         }
@@ -164,50 +168,58 @@ public class Test {
         for (Department department : departments) {
             Manager manager = getManagerOfDepartment(department);
             for (Person person : persons) {
-                if (person instanceof RegularEmployee regularEmployee
-                        && regularEmployee.getDepartment().equals(department)) {
-                    manager.addEmployee(regularEmployee);
+                if (person instanceof RegularEmployee
+                        && ((RegularEmployee) person).getDepartment().equals(department)) {
+                    manager.addEmployee(((RegularEmployee) person));
                 }
             }
         }
-        //instructions
+        // instructions
         for (Person person : persons) {
-            if (person instanceof Manager manager) {
-                manager.distributeBonusBudget();
-                manager.raiseSalary(0.2);
+            if (person instanceof Manager) {
+                ((Manager) person).distributeBonusBudget();
+                ((Manager) person).raiseSalary(0.2);
+                System.out.println(((Manager) person).getSalary() + " " + ((Manager) person).getFirstName() + " "
+                        + ((Manager) person).getClass());
             }
         }
         for (Person person : persons) {
-            if (person instanceof RegularEmployee regularEmployee) {
-                regularEmployee.raiseSalary(0.3);
+            if (person instanceof RegularEmployee && !(person instanceof SalesEmployee || person instanceof Developer)) {
+                ((RegularEmployee) person).raiseSalary(0.3);
+                System.out.println(((RegularEmployee) person).getSalary() + " "
+                        + ((RegularEmployee) person).getFirstName() + " " + ((RegularEmployee) person).getClass());
             }
         }
         for (Person person : persons) {
-            if (person instanceof Developer developer) {
-                developer.raiseSalary(0.23);
+            if (person instanceof Developer) {
+                ((Developer) person).raiseSalary(0.23);
+                System.out.println(((Developer) person).getSalary() + " " + ((Developer) person).getFirstName() + " "
+                        + ((Developer) person).getClass());
             }
         }
 
         SalesEmployee manOfMonth = null;
 
         for (Person person : persons) {
-            if (person instanceof SalesEmployee salesEmployee) {
-                salesEmployee.raiseSalary(0.18);
-                if (manOfMonth == null || salesEmployee.getTotalValuesFromSales() > manOfMonth.getTotalValuesFromSales()) {
-                    manOfMonth = salesEmployee;
+            if (person instanceof SalesEmployee) {
+                ((SalesEmployee) person).raiseSalary(0.18);
+                if (manOfMonth == null
+                        || ((SalesEmployee) person).getTotalValuesFromSales() > manOfMonth.getTotalValuesFromSales()) {
+                    manOfMonth = ((SalesEmployee) person);
                 }
             }
         }
+        System.out.println(manOfMonth.getFirstName() + " " + manOfMonth.getClass());
         manOfMonth.raiseSalary(1000);
 
         for (Department department : departments) {
             System.out.println("************************************************");
             System.out.println(department.toString());
             for (Person person : persons) {
-                if (person instanceof Manager manager) {
-                    if (manager.getDepartment().equals(department)) {
-                        System.out.println("\t" + manager.toString());
-                        ArrayList<RegularEmployee> regularEmployees = manager.getRegularEmployees();
+                if (person instanceof Manager) {
+                    if (((Manager) person).getDepartment().equals(department)) {
+                        System.out.println("\t" + ((Manager) person).toString());
+                        ArrayList<RegularEmployee> regularEmployees = ((Manager) person).getRegularEmployees();
                         for (int i = 0; i < regularEmployees.size(); i++) {
                             System.out.println("\t\t\t" + (i + 1) + ". " + regularEmployees.get(i));
                         }
@@ -217,8 +229,8 @@ public class Test {
         }
         System.out.println("\n\n**********************CUSTOMERS************************");
         for (Person person : persons) {
-            if (person instanceof Customer customer) {
-                System.out.println(customer.toString());
+            if (person instanceof Customer) {
+                System.out.println(((Customer) person).toString());
             }
         }
 
@@ -232,8 +244,8 @@ public class Test {
 
     private static Manager getManagerOfDepartment(Department department) {
         for (Person person : persons) {
-            if (person instanceof Manager manager && manager.getDepartment().equals(department)) {
-                return manager;
+            if (person instanceof Manager && ((Manager) person).getDepartment().equals(department)) {
+                return ((Manager) person);
             }
         }
         return null;

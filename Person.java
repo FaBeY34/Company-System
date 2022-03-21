@@ -83,7 +83,6 @@ public class Person {
             case 2:
                 return "Married";
             default:
-                // TODO: Throw ex
                 return null;
         }
     }
@@ -92,10 +91,12 @@ public class Person {
         switch (maritalStatus) {
             case "Single":
                 this.maritalStatus = 1;
+                return;
             case "Married":
                 this.maritalStatus = 2;
+                return;
             default:
-            throw new Exception("Please enter 'Single' or 'Married'");
+                throw new Exception("Please enter 'Single' or 'Married'");
         }
     }
 
@@ -107,12 +108,12 @@ public class Person {
         switch (hasDriverLicence) {
             case "Yes":
                 this.hasDriverLicence = true;
-                break;
+                return;
             case "No":
                 this.hasDriverLicence = false;
-                break;
+                return;
             default:
-            throw new Exception("Please enter 'Yes' or 'No'");
+                throw new Exception("Please enter 'Yes' or 'No'");
         }
     }
 

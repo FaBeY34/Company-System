@@ -41,10 +41,7 @@ public class Project {
     }
 
     public String getState() {
-        if (state) {
-            return "Open";
-        }
-        return "Close";
+        return state ? "Open" : "Close";
     }
 
     public void close() {

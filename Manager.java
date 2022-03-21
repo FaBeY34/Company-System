@@ -34,7 +34,7 @@ public class Manager extends Employee {
     }
 
     public void setBonusBudget(double bonusBudget) {
-        this.bonusBudget = bonusBudget;
+        this.bonusBudget = (int) (100 * bonusBudget) / 100.0;
     }
 
     public void addEmployee(RegularEmployee e) {

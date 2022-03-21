@@ -26,7 +26,7 @@ public class Employee extends Person {
     }
 
     public void setSalary(double salary) {
-        this.salary = salary;
+        this.salary = (int) (100 * salary) / 100.0;
     }
 
     public Calendar getHireDate() {
