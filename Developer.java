@@ -52,7 +52,7 @@ public class Developer extends RegularEmployee {
                     + (project.getStartDate().get(Calendar.MONTH) + 1)
                     + "/" + project.getStartDate().get(Calendar.YEAR) + ", state=" + project.getState() + "] ";
         }
-        return "Developer\n\t\t\t\tPerson Info [id=" + getId() + ", firstName=" + getFirstName() + ", firstName="
+        return "Developer\n\t\t\t\tPerson Info [id=" + getId() + ", firstName=" + getFirstName() + ", lastName="
                 + getLastName() + ", gender=" + getGender() + "]\n\t\t\t\tEmployee Info [salary=" + getSalary()
                 + ", hireDate=" + getHireDate().get(Calendar.DAY_OF_MONTH) + "/"
                 + (getHireDate().get(Calendar.MONTH) + 1)

@@ -26,7 +26,7 @@ public class Customer extends Person {
 
     @Override
     public String toString() {
-        var productDetails = "";
+        String productDetails = "";
         for (Product product : products) {
             productDetails += "Product [productName=" + product.getProductName() + ", transactionDate="
                     + product.getSaleDate().get(Calendar.DAY_OF_MONTH) + "/"

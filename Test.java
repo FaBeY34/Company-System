@@ -5,6 +5,7 @@
  * Student ID: 150121021
  */
 import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Scanner;
@@ -17,6 +18,7 @@ public class Test {
 
     public static void main(String[] args) throws Exception {
         File file = new File("CSE1242_spring2022_homework_1_input.txt");
+        FileWriter fileWriter = new FileWriter("CSE1242_spring2022_homework_1_output2.txt");
         Scanner scanner = new Scanner(file);
         while (scanner.hasNextLine()) {
             String[] line = scanner.nextLine().split(" ");
@@ -213,14 +215,17 @@ public class Test {
                 if (person instanceof Manager) {
                     if (((Manager) person).getDepartment().equals(department)) {
                         System.out.println("\t" + ((Manager) person).toString());
-                        ArrayList<RegularEmployee> regularEmployees = ((Manager) person).getRegularEmployees();
+                        ArrayList<RegularEmployee> regularEmployees = sortEmployees(
+                                ((Manager) person).getRegularEmployees());
                         for (int i = 0; i < regularEmployees.size(); i++) {
                             System.out.println("\t\t\t" + (i + 1) + ". " + regularEmployees.get(i));
+                            //fileWriter 
                         }
                     }
                 }
             }
         }
+        fileWriter.close();
         System.out.println("\n\n\n**********************CUSTOMERS************************");
         for (Person person : people) {
             if (person instanceof Customer) {
@@ -255,11 +260,23 @@ public class Test {
         return calendar;
     }
 
-    // private static ArrayList<RegularEmployee> sortEmployees(ArrayList<RegularEmployee> regularEmployees) {
-    //     for (int i = 0; i < regularEmployees.size(); i++) {
-            
-    //     }
-    //     return regularEmployees;
-    // }
-
+    private static ArrayList<RegularEmployee> sortEmployees(ArrayList<RegularEmployee> regularEmployees) {
+        ArrayList<RegularEmployee> reOrganizeRegEmps = new ArrayList<>();
+        for (RegularEmployee regEmp : regularEmployees) {
+            if (regEmp instanceof Developer) {
+                reOrganizeRegEmps.add(regEmp);
+            }
+        }
+        for (RegularEmployee regEmp : regularEmployees) {
+            if (regEmp instanceof SalesEmployee) {
+                reOrganizeRegEmps.add(regEmp);
+            }
+        }
+        for (RegularEmployee regEmp : regularEmployees) {
+            if (!(regEmp instanceof Developer || regEmp instanceof SalesEmployee)) {
+                reOrganizeRegEmps.add(regEmp);
+            }
+        }
+        return reOrganizeRegEmps;
+    }
 }
