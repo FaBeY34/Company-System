@@ -198,7 +198,8 @@ public class Test {
         for (Person person : people) {
             if (person instanceof SalesEmployee) {
                 ((SalesEmployee) person).raiseSalary(0.18);
-                if (manOfMonth == null || ((SalesEmployee) person).getTotalValuesFromSales() > manOfMonth.getTotalValuesFromSales()) {
+                if (manOfMonth == null
+                        || ((SalesEmployee) person).getTotalValuesFromSales() > manOfMonth.getTotalValuesFromSales()) {
                     manOfMonth = ((SalesEmployee) person);
                 }
             }
@@ -253,4 +254,12 @@ public class Test {
         calendar.set(YEAR, MONTH, DAY);
         return calendar;
     }
+
+    private static ArrayList<RegularEmployee> sortEmployees(ArrayList<RegularEmployee> regularEmployees) {
+        for (int i = 0; i < regularEmployees.size(); i++) {
+            
+        }
+        return regularEmployees;
+    }
+
 }
