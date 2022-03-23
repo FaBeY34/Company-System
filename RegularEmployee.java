@@ -37,9 +37,7 @@ public class RegularEmployee extends Employee {
 
     @Override
     public String toString() {
-        return super.toString() + "\n\t\t\t\tRegularEmployee Info [" +
-                "performanceScore=" + performanceScore +
-                ", bonus=" + bonus +
-                ']';
+        return super.toString() + "\n\t\t\t\tRegularEmployee Info [performanceScore=" + performanceScore + ", bonus="
+                + bonus + "]";
     }
 }

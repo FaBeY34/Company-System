@@ -62,14 +62,6 @@ public class SalesEmployee extends RegularEmployee {
 
     @Override
     public String toString() {
-        // String productDetails = "";
-        // for (Product product : getSales()) {
-        //     productDetails += "Product [productName=" + product.getProductName() + ", transactionDate="
-        //             + product.getSaleDate().get(Calendar.DAY_OF_MONTH) + "/"
-        //             + (product.getSaleDate().get(Calendar.MONTH) + 1)
-        //             + "/" + product.getSaleDate().get(Calendar.YEAR) + ", price=" + product.getPrice() + "] ";
-        // }
-        return super.toString() + "\n\t\t\t\t" +
-        sales;
+        return super.toString() + "\n\t\t\t\t" + sales;
     }
 }

@@ -63,8 +63,8 @@ public class Employee extends Person {
 
     @Override
     public String toString() {
-        return super.personInfo() + "\n\t\t\t\tEmployee Info ["
-                + "salary=" + salary + ", hireDate=" + hireDate.get(Calendar.DAY_OF_MONTH) + "/"
+        return super.personInfo() + "\n\t\t\t\tEmployee Info [salary="
+                + salary + ", hireDate=" + hireDate.get(Calendar.DAY_OF_MONTH) + "/"
                 + (hireDate.get(Calendar.MONTH) + 1) + "/" + hireDate.get(Calendar.YEAR) + "]";
     }
 }

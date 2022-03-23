@@ -45,16 +45,6 @@ public class Developer extends RegularEmployee {
 
     @Override
     public String toString() {
-        // String projectDetails = "";
-        // for (Project project : projects) {
-        // projectDetails += "Project [projectName=" + project.getProjectName() + ",
-        // startDate="
-        // + project.getStartDate().get(Calendar.DAY_OF_MONTH) + "/"
-        // + (project.getStartDate().get(Calendar.MONTH) + 1)
-        // + "/" + project.getStartDate().get(Calendar.YEAR) + ", state=" +
-        // project.getState() + "] ";
-        // }
-        return super.toString() + "\n\t\t\t\t" +
-                projects;
+        return super.toString() + "\n\t\t\t\t" + projects;
     }
 }
