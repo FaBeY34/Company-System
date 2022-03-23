@@ -54,6 +54,6 @@ public class Project {
     public String toString() {
         return "Project [projectName=" + projectName + ", startDate=" + startDate.get(Calendar.DAY_OF_MONTH) + "/"
                 + (startDate.get(Calendar.MONTH) + 1) + "/"
-                + startDate.get(Calendar.YEAR) + ", state=" + getState() + "]";
+                + startDate.get(Calendar.YEAR) + ", state=" + state + "]";
     }
 }

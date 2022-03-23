@@ -27,7 +27,7 @@ public class SalesEmployee extends RegularEmployee {
     }
 
     public void setTotalValuesFromSales(double totalValuesFromSales) {
-        this.totalValuesFromSales = (int) (100 * totalValuesFromSales) / 100.0;
+        this.totalValuesFromSales = Math.round((100 * totalValuesFromSales) / 100.0);
     }
 
     public ArrayList<Product> getSales() {
@@ -62,18 +62,14 @@ public class SalesEmployee extends RegularEmployee {
 
     @Override
     public String toString() {
-        String productDetails = "";
-        for (Product product : getSales()) {
-            productDetails += "Product [productName=" + product.getProductName() + ", transactionDate="
-                    + product.getSaleDate().get(Calendar.DAY_OF_MONTH) + "/"
-                    + (product.getSaleDate().get(Calendar.MONTH) + 1)
-                    + "/" + product.getSaleDate().get(Calendar.YEAR) + ", price=" + product.getPrice() + "] ";
-        }
-        return "SalesEmployee\n\t\t\t\tPerson Info [id=" + getId() + ", firstName=" + getFirstName() + ", lastName="
-                + getLastName() + ", gender=" + getGender() + "]\n\t\t\t\tEmployee Info [salary=" + getSalary()
-                + ", hireDate=" + getHireDate().get(Calendar.DAY_OF_MONTH) + "/"
-                + (getHireDate().get(Calendar.MONTH) + 1)
-                + "/" + getHireDate().get(Calendar.YEAR) + "]\n\t\t\t\tRegularEmployee Info [performanceScore="
-                + getPerformanceScore() + ", bonus=" + getBonus() + "]\n\t\t\t\t[" + productDetails + "]\t\t\t";
+        // String productDetails = "";
+        // for (Product product : getSales()) {
+        //     productDetails += "Product [productName=" + product.getProductName() + ", transactionDate="
+        //             + product.getSaleDate().get(Calendar.DAY_OF_MONTH) + "/"
+        //             + (product.getSaleDate().get(Calendar.MONTH) + 1)
+        //             + "/" + product.getSaleDate().get(Calendar.YEAR) + ", price=" + product.getPrice() + "] ";
+        // }
+        return super.toString() + "\n\t\t\t\t" +
+        sales;
     }
 }

@@ -32,12 +32,12 @@ public class Product {
     }
 
     public void setPrice(double price) {
-        this.price = (int) (100 * price) / 100.0;
+        this.price = Math.round ((100 * price)) / 100.0;
     }
 
     @Override
     public String toString() {
-        return "Product [productName=" + productName + ", saleDate=" + saleDate.get(Calendar.DAY_OF_MONTH) + "/"
+        return "Product [productName=" + productName + ", transactionDate=" + saleDate.get(Calendar.DAY_OF_MONTH) + "/"
                 + (saleDate.get(Calendar.MONTH) + 1) + "/"
                 + saleDate.get(Calendar.YEAR) + ", price=" + price + "]";
     }

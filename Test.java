@@ -209,36 +209,44 @@ public class Test {
         manOfMonth.raiseSalary(1000);
 
         for (Department department : departments) {
-            System.out.println("************************************************");
-            System.out.println(department.toString());
+            // System.out.println("************************************************");
+            // System.out.println(department.toString());
+            fileWriter.write("************************************************\n" + department.toString() + "\n");
             for (Person person : people) {
                 if (person instanceof Manager) {
                     if (((Manager) person).getDepartment().equals(department)) {
-                        System.out.println("\t" + ((Manager) person).toString());
+                        // System.out.println("\t" + ((Manager) person).toString());
+                        fileWriter.write("\t" + ((Manager) person).toString() + "\n");
                         ArrayList<RegularEmployee> regularEmployees = sortEmployees(
                                 ((Manager) person).getRegularEmployees());
                         for (int i = 0; i < regularEmployees.size(); i++) {
-                            System.out.println("\t\t\t" + (i + 1) + ". " + regularEmployees.get(i));
-                            //fileWriter 
+                            // System.out.println("\t\t\t" + (i + 1) + ". " + regularEmployees.get(i));
+                            fileWriter.write("\t\t\t" + (i + 1) + ". "+ regularEmployees.get(i).getClass().getSimpleName() + "\n\t\t\t\t" + regularEmployees.get(i) + "\n");
                         }
                     }
                 }
             }
+            fileWriter.write("\n");
         }
-        fileWriter.close();
-        System.out.println("\n\n\n**********************CUSTOMERS************************");
+        // System.out.println("\n\n**********************CUSTOMERS************************");
+        fileWriter.write("\n\n**********************CUSTOMERS************************\n");
         for (Person person : people) {
             if (person instanceof Customer) {
-                System.out.println(((Customer) person).toString());
+                // System.out.println(((Customer) person).toString());
+                fileWriter.write(((Customer) person).toString() + "\n");
             }
         }
 
-        System.out.println("\n\n**********************PEOPLE************************");
+        // System.out.println("\n\n**********************PEOPLE************************");
+        fileWriter.write("\n\n**********************PEOPLE************************\n");
+
         for (Person person : people) {
             if (!(person instanceof Customer || person instanceof Employee)) {
-                System.out.println(person.toString());
+                // System.out.println(person.toString());
+                fileWriter.write(person.toString() + "\n");
             }
         }
+    fileWriter.close();
     }
 
     private static Manager getManagerOfDepartment(Department department) {

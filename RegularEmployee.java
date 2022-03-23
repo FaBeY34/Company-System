@@ -24,7 +24,7 @@ public class RegularEmployee extends Employee {
     }
 
     public void setPerformanceScore(double performanceScore) {
-        this.performanceScore = (int) (100 * performanceScore) / 100.0;
+        this.performanceScore = Math.round((100 * performanceScore)) / 100.0;
     }
 
     public double getBonus() {
@@ -32,17 +32,14 @@ public class RegularEmployee extends Employee {
     }
 
     public void setBonus(double bonus) {
-        this.bonus = (int) (100 * bonus) / 100.0;
+        this.bonus = Math.round((100 * bonus)) / 100.0;
     }
 
     @Override
     public String toString() {
-        return "RegularEmployee\n\t\t\t\tPerson Info [id=" + getId() + ", firstName=" + getFirstName()
-                + ", lastName="
-                + getLastName() + ", gender=" + getGender() + "]\n\t\t\t\tEmployee Info [salary=" + getSalary()
-                + ", hireDate=" + getHireDate().get(Calendar.DAY_OF_MONTH) + "/"
-                + (getHireDate().get(Calendar.MONTH) + 1)
-                + "/" + getHireDate().get(Calendar.YEAR) + "]\n\t\t\t\tRegularEmployee Info [performanceScore="
-                + getPerformanceScore() + ", bonus=" + getBonus() + "]\t\t\t";
+        return super.toString() + "\n\t\t\t\tRegularEmployee Info [" +
+                "performanceScore=" + performanceScore +
+                ", bonus=" + bonus +
+                ']';
     }
 }

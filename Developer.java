@@ -45,18 +45,16 @@ public class Developer extends RegularEmployee {
 
     @Override
     public String toString() {
-        String projectDetails = "";
-        for (Project project : projects) {
-            projectDetails += "Project [projectName=" + project.getProjectName() + ", startDate="
-                    + project.getStartDate().get(Calendar.DAY_OF_MONTH) + "/"
-                    + (project.getStartDate().get(Calendar.MONTH) + 1)
-                    + "/" + project.getStartDate().get(Calendar.YEAR) + ", state=" + project.getState() + "] ";
-        }
-        return "Developer\n\t\t\t\tPerson Info [id=" + getId() + ", firstName=" + getFirstName() + ", lastName="
-                + getLastName() + ", gender=" + getGender() + "]\n\t\t\t\tEmployee Info [salary=" + getSalary()
-                + ", hireDate=" + getHireDate().get(Calendar.DAY_OF_MONTH) + "/"
-                + (getHireDate().get(Calendar.MONTH) + 1)
-                + "/" + getHireDate().get(Calendar.YEAR) + "]\n\t\t\t\tRegularEmployee Info [performanceScore="
-                + getPerformanceScore() + ", bonus=" + getBonus() + "]\n\t\t\t\t[" + projectDetails + "]\t\t\t";
+        // String projectDetails = "";
+        // for (Project project : projects) {
+        // projectDetails += "Project [projectName=" + project.getProjectName() + ",
+        // startDate="
+        // + project.getStartDate().get(Calendar.DAY_OF_MONTH) + "/"
+        // + (project.getStartDate().get(Calendar.MONTH) + 1)
+        // + "/" + project.getStartDate().get(Calendar.YEAR) + ", state=" +
+        // project.getState() + "] ";
+        // }
+        return super.toString() + "\n\t\t\t\t" +
+                projects;
     }
 }

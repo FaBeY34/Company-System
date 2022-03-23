@@ -117,6 +117,11 @@ public class Person {
         }
     }
 
+    public String personInfo() {
+        return "Person Info [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", gender="
+                + getGender() + "]";
+    }
+
     @Override
     public String toString() {
         return "Person [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", gender=" + getGender()

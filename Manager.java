@@ -34,7 +34,7 @@ public class Manager extends Employee {
     }
 
     public void setBonusBudget(double bonusBudget) {
-        this.bonusBudget = (int) (100 * bonusBudget) / 100.0;
+        this.bonusBudget = Math.round((100 * bonusBudget)) / 100.0;
     }
 
     public void addEmployee(RegularEmployee e) {
@@ -58,7 +58,7 @@ public class Manager extends Employee {
 
     @Override
     public String toString() {
-        return "Manager  [id: " + getId() + ", " + getFirstName() + " " + getLastName() +
-                "\n\t\t" + "# of Employees: " + this.regularEmployees.size() + "]";
+        return "Manager [id: " + super.getId() + ", " +
+                super.getFirstName() + " " + super.getLastName() + "\n\t\t# of Employees: " + regularEmployees.size() + "]";
     }
 }

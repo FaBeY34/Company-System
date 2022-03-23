@@ -26,13 +26,6 @@ public class Customer extends Person {
 
     @Override
     public String toString() {
-        String productDetails = "";
-        for (Product product : products) {
-            productDetails += "Product [productName=" + product.getProductName() + ", transactionDate="
-                    + product.getSaleDate().get(Calendar.DAY_OF_MONTH) + "/"
-                    + (product.getSaleDate().get(Calendar.MONTH) + 1)
-                    + "/" + product.getSaleDate().get(Calendar.YEAR) + ", price=" + product.getPrice() + "] ";
-        }
-        return "Customer [id=" + getId() + ", products=[" + productDetails + "]]";
+        return "Customer [id: " + getId() + " products=" + products + "]";
     }
 }

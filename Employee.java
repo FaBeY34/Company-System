@@ -26,7 +26,7 @@ public class Employee extends Person {
     }
 
     public void setSalary(double salary) {
-        this.salary = (int) (100 * salary) / 100.0;
+        this.salary = Math.round((100 * salary)) / 100.0;
     }
 
     public Calendar getHireDate() {
@@ -63,8 +63,8 @@ public class Employee extends Person {
 
     @Override
     public String toString() {
-        return "Employee [salary=" + salary + ", hireDate=" + hireDate.get(Calendar.DAY_OF_MONTH) + "/"
-                + (hireDate.get(Calendar.MONTH) + 1) + "/" + hireDate.get(Calendar.YEAR) + ", department="
-                + department.toString() + "]";
+        return super.personInfo() + "\n\t\t\t\tEmployee Info ["
+                + "salary=" + salary + ", hireDate=" + hireDate.get(Calendar.DAY_OF_MONTH) + "/"
+                + (hireDate.get(Calendar.MONTH) + 1) + "/" + hireDate.get(Calendar.YEAR) + "]";
     }
 }
