@@ -18,7 +18,7 @@ public class Test {
 
     public static void main(String[] args) throws Exception {
         File file = new File("CSE1242_spring2022_homework_1_input.txt");
-        FileWriter fileWriter = new FileWriter("CSE1242_spring2022_homework_1_output2.txt");
+        FileWriter fileWriter = new FileWriter("CSE1242_spring2022_homework_1_output.txt");
         Scanner scanner = new Scanner(file);
         while (scanner.hasNextLine()) {
             String[] line = scanner.nextLine().split(" ");
@@ -209,44 +209,38 @@ public class Test {
         manOfMonth.raiseSalary(1000);
 
         for (Department department : departments) {
-            // System.out.println("************************************************");
-            // System.out.println(department.toString());
             fileWriter.write("************************************************\n" + department.toString() + "\n");
             for (Person person : people) {
                 if (person instanceof Manager) {
                     if (((Manager) person).getDepartment().equals(department)) {
-                        // System.out.println("\t" + ((Manager) person).toString());
                         fileWriter.write("\t" + ((Manager) person).toString() + "\n");
                         ArrayList<RegularEmployee> regularEmployees = sortEmployees(
                                 ((Manager) person).getRegularEmployees());
                         for (int i = 0; i < regularEmployees.size(); i++) {
-                            // System.out.println("\t\t\t" + (i + 1) + ". " + regularEmployees.get(i));
-                            fileWriter.write("\t\t\t" + (i + 1) + ". "+ regularEmployees.get(i).getClass().getSimpleName() + "\n\t\t\t\t" + regularEmployees.get(i) + "\n");
+                            fileWriter.write(
+                                    "\t\t\t" + (i + 1) + ". " + regularEmployees.get(i).getClass().getSimpleName()
+                                            + "\n\t\t\t\t" + regularEmployees.get(i) + "\n");
                         }
                     }
                 }
             }
             fileWriter.write("\n");
         }
-        // System.out.println("\n\n**********************CUSTOMERS************************");
         fileWriter.write("\n\n**********************CUSTOMERS************************\n");
         for (Person person : people) {
             if (person instanceof Customer) {
-                // System.out.println(((Customer) person).toString());
                 fileWriter.write(((Customer) person).toString() + "\n");
             }
         }
 
-        // System.out.println("\n\n**********************PEOPLE************************");
         fileWriter.write("\n\n**********************PEOPLE************************\n");
 
         for (Person person : people) {
             if (!(person instanceof Customer || person instanceof Employee)) {
-                // System.out.println(person.toString());
                 fileWriter.write(person.toString() + "\n");
             }
         }
-    fileWriter.close();
+        fileWriter.close();
     }
 
     private static Manager getManagerOfDepartment(Department department) {
@@ -267,7 +261,7 @@ public class Test {
         calendar.set(YEAR, MONTH, DAY);
         return calendar;
     }
-    private static ArrayList<Customer> sortCustomers()
+
     private static ArrayList<RegularEmployee> sortEmployees(ArrayList<RegularEmployee> regularEmployees) {
         ArrayList<RegularEmployee> reOrganizeRegEmps = new ArrayList<>();
         for (RegularEmployee regEmp : regularEmployees) {
