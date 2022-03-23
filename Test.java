@@ -267,7 +267,7 @@ public class Test {
         calendar.set(YEAR, MONTH, DAY);
         return calendar;
     }
-
+    private static ArrayList<Customer> sortCustomers()
     private static ArrayList<RegularEmployee> sortEmployees(ArrayList<RegularEmployee> regularEmployees) {
         ArrayList<RegularEmployee> reOrganizeRegEmps = new ArrayList<>();
         for (RegularEmployee regEmp : regularEmployees) {
