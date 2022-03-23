@@ -18,7 +18,7 @@ public class Test {
 
     public static void main(String[] args) throws Exception {
         File file = new File("CSE1242_spring2022_homework_1_input.txt");
-        FileWriter fileWriter = new FileWriter("CSE1242_spring2022_homework_1_output2.txt");
+        FileWriter fileWriter = new FileWriter("CSE1242_spring2022_homework_1_output.txt");
         Scanner scanner = new Scanner(file);
         while (scanner.hasNextLine()) {
             String[] line = scanner.nextLine().split(" ");
@@ -227,7 +227,11 @@ public class Test {
             fileWriter.write("\n");
         }
         fileWriter.write("\n\n**********************CUSTOMERS************************\n");
-        fileWriter.write(sortCustomers());
+        for (Person person : people) {
+            if (person instanceof Customer) {
+                fileWriter.write(((Customer) person).toString() + "\n");
+            }
+        }
 
         fileWriter.write("\n\n**********************PEOPLE************************\n");
 
@@ -276,34 +280,5 @@ public class Test {
             }
         }
         return reOrganizeRegEmps;
-    }
-
-    private static String sortCustomers() {
-        String text = "";
-        for (Person person : people) {
-            if (person instanceof Customer) {
-                if (((Customer)person).getId() == 224) {
-                    text += ((Customer) person).toString() + "\n";
-                    break;
-                }
-            }
-        }
-        for (Person person : people) {
-            if (person instanceof Customer) {
-                if (((Customer)person).getId() == 267) {
-                    text += ((Customer) person).toString() + "\n";
-                    break;
-                }
-            }
-        }
-        for (Person person : people) {
-            if (person instanceof Customer) {
-                if (((Customer)person).getId() == 178) {
-                    text += ((Customer) person).toString() + "\n";
-                    break;
-                }
-            }
-        }
-        return text;
     }
 }
