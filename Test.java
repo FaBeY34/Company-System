@@ -40,7 +40,6 @@ public class Test {
                             line[6], line[7]));
                     break;
                 }
-                
                 case "Employee": {
                     int personId = Integer.parseInt(line[1]);
                     String departmentName = line[4];
