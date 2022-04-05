@@ -40,6 +40,7 @@ public class Test {
                             line[6], line[7]));
                     break;
                 }
+                
                 case "Employee": {
                     int personId = Integer.parseInt(line[1]);
                     String departmentName = line[4];
@@ -242,7 +243,7 @@ public class Test {
         }
         fileWriter.close();
     }
-
+    
     private static Manager getManagerOfDepartment(Department department) {
         for (Person person : people) {
             if (person instanceof Manager && ((Manager) person).getDepartment().equals(department)) {
