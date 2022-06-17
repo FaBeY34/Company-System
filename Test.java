@@ -17,8 +17,8 @@ public class Test {
     private static ArrayList<Product> products = new ArrayList<>();
 
     public static void main(String[] args) throws Exception {
-        File file = new File("CSE1242_spring2022_homework_1_input.txt");
-        FileWriter fileWriter = new FileWriter("CSE1242_spring2022_homework_1_output.txt");
+        File file = new File("input.txt");
+        FileWriter fileWriter = new FileWriter("output.txt");
         Scanner scanner = new Scanner(file);
         while (scanner.hasNextLine()) {
             String[] line = scanner.nextLine().split(" ");
